@@ -12,7 +12,7 @@ const bars = [40, 65, 50, 80, 72, 95, 88, 60, 78, 92, 70, 85];
 
 export function DashboardPreview() {
   return (
-    <section className="relative bg-background py-24 lg:py-32">
+    <section id="dashboard" className="relative bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
