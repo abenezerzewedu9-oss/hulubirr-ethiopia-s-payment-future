@@ -5,11 +5,10 @@ import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  { label: "Home", to: "/" },
-  { label: "How it Works", to: "/#how-it-works", hash: true },
-  { label: "Developers", to: "/#developers", hash: true },
-  { label: "Mobile Wallet", to: "/mobile-wallet" },
-  { label: "About", to: "/#about", hash: true },
+  { label: "Home", href: "/" },
+  { label: "How it Works", href: "/#how-it-works" },
+  { label: "Developers", href: "/#developers" },
+  { label: "Dashboard", href: "/#dashboard" },
 ];
 
 export function Navbar() {
@@ -24,49 +23,51 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-white/10 bg-navy/70 backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div className="text-white">
-          <Logo />
-        </div>
-        <div className="hidden items-center gap-8 md:flex">
-          {links.map((l) =>
-            l.hash ? (
-              <a key={l.label} href={l.to.replace("/", "")} className="text-sm text-white/70 transition hover:text-white">
-                {l.label}
-              </a>
-            ) : (
-              <Link key={l.label} to={l.to} className="text-sm text-white/70 transition hover:text-white">
-                {l.label}
-              </Link>
-            )
-          )}
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-4 sm:pt-5">
+      <nav
+        className={`mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 rounded-full border border-border bg-card/80 px-3 pl-5 backdrop-blur-xl transition-all duration-300 ${
+          scrolled ? "shadow-card-soft" : "shadow-sm"
+        }`}
+      >
+        <Logo />
+        <div className="hidden items-center gap-7 md:flex">
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              className="text-sm text-muted-foreground transition hover:text-navy"
+            >
+              {l.label}
+            </a>
+          ))}
         </div>
         <div className="hidden md:block">
-          <Button className="bg-gold-gradient text-white shadow-gold-glow hover:opacity-90">
+          <Button className="rounded-full bg-navy px-5 text-white hover:bg-navy/90">
             Get Started
           </Button>
         </div>
-        <button className="md:hidden text-white" onClick={() => setOpen(!open)} aria-label="Menu">
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        <button
+          className="rounded-full p-2 text-navy md:hidden"
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
+
       {open && (
-        <div className="md:hidden border-t border-white/10 bg-navy/95 backdrop-blur-xl">
-          <div className="space-y-2 px-4 py-4">
-            {links.map((l) => (
-              <a key={l.label} href={l.to} onClick={() => setOpen(false)} className="block py-2 text-white/80">
-                {l.label}
-              </a>
-            ))}
-            <Button className="mt-2 w-full bg-gold-gradient text-white">Get Started</Button>
-          </div>
+        <div className="mx-auto mt-2 max-w-5xl rounded-2xl border border-border bg-card/95 p-3 shadow-card-soft backdrop-blur-xl md:hidden">
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="block rounded-lg px-3 py-2 text-sm text-navy hover:bg-secondary"
+            >
+              {l.label}
+            </a>
+          ))}
+          <Button className="mt-2 w-full rounded-full bg-navy text-white">Get Started</Button>
         </div>
       )}
     </header>
