@@ -1,11 +1,10 @@
 import { Github, Twitter, Linkedin } from "lucide-react";
 import { Logo } from "./Logo";
-import { Link } from "@tanstack/react-router";
 
 const cols = [
-  { title: "Product", links: ["Features", "Dashboard", "Pricing", "Mobile Wallet"] },
+  { title: "Product", links: ["Features", "Dashboard", "Pricing"] },
   { title: "Developers", links: ["Documentation", "API Reference", "Webhooks", "Status"] },
-  { title: "Company", links: ["About", "Careers", "Blog", "Contact"] },
+  { title: "Company", links: ["Careers", "Blog", "Contact"] },
   { title: "Legal", links: ["Privacy", "Terms", "Security", "Compliance"] },
 ];
 
