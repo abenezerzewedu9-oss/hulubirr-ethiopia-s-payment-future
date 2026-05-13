@@ -6,15 +6,11 @@ export function PaymentVerifyCard() {
   const [stage, setStage] = useState<"pending" | "verified">("pending");
 
   useEffect(() => {
-    const cycle = () => {
-      setStage("pending");
-      const t = setTimeout(() => setStage("verified"), 2200);
-      return t;
-    };
-    let t = cycle();
+    setStage("pending");
+    const t = setTimeout(() => setStage("verified"), 2200);
     const interval = setInterval(() => {
-      clearTimeout(t);
-      t = cycle();
+      setStage("pending");
+      setTimeout(() => setStage("verified"), 2200);
     }, 4500);
     return () => {
       clearInterval(interval);
@@ -23,53 +19,47 @@ export function PaymentVerifyCard() {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.3 }}
-      className="relative w-full max-w-md"
-    >
+    <div className="relative w-full max-w-md">
       {/* glow */}
-      <div className="absolute -inset-6 rounded-[2rem] bg-gold-gradient opacity-20 blur-3xl" />
+      <div className="absolute -inset-8 -z-10 rounded-[2rem] bg-gradient-to-br from-primary/20 via-accent/20 to-transparent blur-3xl" />
 
-      <div className="relative rounded-2xl border border-white/10 bg-white/5 p-1 backdrop-blur-xl shadow-glow">
-        <div className="rounded-[14px] bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-6">
-          <div className="flex items-center justify-between text-xs text-white/60">
+      <div className="relative rounded-2xl border border-border bg-card/90 p-1 backdrop-blur-xl shadow-card-soft">
+        <div className="rounded-[14px] bg-gradient-to-br from-secondary/60 to-card p-6">
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-red-400/80" />
-              <span className="h-2 w-2 rounded-full bg-yellow-400/80" />
-              <span className="h-2 w-2 rounded-full bg-green-400/80" />
+              <span className="h-2 w-2 rounded-full bg-red-400" />
+              <span className="h-2 w-2 rounded-full bg-yellow-400" />
+              <span className="h-2 w-2 rounded-full bg-green-500" />
             </div>
             <span className="font-mono">live verification</span>
           </div>
 
           <div className="mt-6 flex items-center justify-between">
-            <div>
-              <div className="text-[11px] uppercase tracking-wider text-white/50">Amount</div>
-              <div className="mt-1 text-3xl font-bold text-white">
+            <div className="text-left">
+              <div className="text-[11px] uppercase tracking-wider text-muted-foreground">Amount</div>
+              <div className="mt-1 text-3xl font-bold text-navy">
                 ETB <span className="tabular-nums">2,450</span>
-                <span className="text-base font-medium text-white/60">.00</span>
+                <span className="text-base font-medium text-muted-foreground">.00</span>
               </div>
             </div>
-            <div className="rounded-xl bg-white/10 p-3">
-              <Building2 className="h-6 w-6 text-white/80" />
+            <div className="rounded-xl bg-primary/10 p-3">
+              <Building2 className="h-6 w-6 text-primary" />
             </div>
           </div>
 
-          <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
-            <div className="rounded-lg bg-white/5 p-3">
-              <div className="text-[10px] uppercase tracking-wider text-white/40">From</div>
-              <div className="mt-1 font-medium text-white">CBE • ****4218</div>
+          <div className="mt-5 grid grid-cols-2 gap-3 text-left text-sm">
+            <div className="rounded-lg bg-secondary/60 p-3">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">From</div>
+              <div className="mt-1 font-medium text-navy">CBE • ****4218</div>
             </div>
-            <div className="rounded-lg bg-white/5 p-3">
-              <div className="text-[10px] uppercase tracking-wider text-white/40">Ref</div>
-              <div className="mt-1 font-mono text-white">HB-9182</div>
+            <div className="rounded-lg bg-secondary/60 p-3">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Ref</div>
+              <div className="mt-1 font-mono text-navy">HB-9182</div>
             </div>
           </div>
 
-          {/* Status */}
           <div className="mt-6">
-            <div className="mb-2 flex items-center justify-between text-[11px] uppercase tracking-wider text-white/50">
+            <div className="mb-2 flex items-center justify-between text-[11px] uppercase tracking-wider text-muted-foreground">
               <span>Status</span>
               <span className="font-mono">{stage === "pending" ? "00:14" : "00:18"}</span>
             </div>
@@ -80,12 +70,12 @@ export function PaymentVerifyCard() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
-                  className="flex items-center gap-3 rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3"
+                  className="flex items-center gap-3 rounded-xl border border-amber-300/60 bg-amber-50 px-4 py-3 text-left"
                 >
-                  <Loader2 className="h-5 w-5 animate-spin text-amber-300" />
+                  <Loader2 className="h-5 w-5 animate-spin text-amber-600" />
                   <div>
-                    <div className="text-sm font-semibold text-amber-200">Pending</div>
-                    <div className="text-xs text-amber-200/70">Listening for bank SMS…</div>
+                    <div className="text-sm font-semibold text-amber-700">Pending</div>
+                    <div className="text-xs text-amber-700/70">Listening for bank SMS…</div>
                   </div>
                 </motion.div>
               ) : (
@@ -94,16 +84,16 @@ export function PaymentVerifyCard() {
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
-                  className="flex items-center gap-3 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3"
+                  className="flex items-center gap-3 rounded-xl border border-emerald-300/60 bg-emerald-50 px-4 py-3 text-left"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-400 animate-pulse-ring">
-                    <Check className="h-5 w-5 text-emerald-950" strokeWidth={3} />
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500 animate-pulse-ring">
+                    <Check className="h-5 w-5 text-white" strokeWidth={3} />
                   </span>
                   <div>
-                    <div className="text-sm font-semibold text-emerald-200">Verified</div>
-                    <div className="text-xs text-emerald-200/70">Webhook delivered • 18.4s</div>
+                    <div className="text-sm font-semibold text-emerald-700">Verified</div>
+                    <div className="text-xs text-emerald-700/70">Webhook delivered • 18.4s</div>
                   </div>
-                  <ArrowRight className="ml-auto h-4 w-4 text-emerald-200/70" />
+                  <ArrowRight className="ml-auto h-4 w-4 text-emerald-600" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -111,23 +101,22 @@ export function PaymentVerifyCard() {
         </div>
       </div>
 
-      {/* floating side cards */}
       <motion.div
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -left-8 -bottom-6 hidden rounded-xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-xl sm:block"
+        className="absolute -left-6 -bottom-6 hidden rounded-xl border border-border bg-card px-4 py-3 shadow-card-soft sm:block"
       >
-        <div className="text-[10px] uppercase tracking-wider text-white/50">Today</div>
-        <div className="text-lg font-bold text-white">ETB 184,920</div>
+        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Today</div>
+        <div className="text-lg font-bold text-navy">ETB 184,920</div>
       </motion.div>
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -right-6 -top-6 hidden rounded-xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-xl sm:block"
+        className="absolute -right-6 -top-6 hidden rounded-xl border border-border bg-card px-4 py-3 shadow-card-soft sm:block"
       >
-        <div className="text-[10px] uppercase tracking-wider text-white/50">Avg verify</div>
-        <div className="text-lg font-bold text-white">17.2s</div>
+        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Avg verify</div>
+        <div className="text-lg font-bold text-primary">17.2s</div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }
