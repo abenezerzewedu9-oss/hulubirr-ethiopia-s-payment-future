@@ -1,11 +1,10 @@
 import { Github, Twitter, Linkedin } from "lucide-react";
 import { Logo } from "./Logo";
-import { Link } from "@tanstack/react-router";
 
 const cols = [
-  { title: "Product", links: ["Features", "Dashboard", "Pricing", "Mobile Wallet"] },
+  { title: "Product", links: ["Features", "Dashboard", "Pricing"] },
   { title: "Developers", links: ["Documentation", "API Reference", "Webhooks", "Status"] },
-  { title: "Company", links: ["About", "Careers", "Blog", "Contact"] },
+  { title: "Company", links: ["Careers", "Blog", "Contact"] },
   { title: "Legal", links: ["Privacy", "Terms", "Security", "Compliance"] },
 ];
 
@@ -35,11 +34,7 @@ export function Footer() {
                 <ul className="mt-4 space-y-2 text-sm">
                   {c.links.map((l) => (
                     <li key={l}>
-                      {l === "Mobile Wallet" ? (
-                        <Link to="/mobile-wallet" className="text-white/70 transition hover:text-white">{l}</Link>
-                      ) : (
-                        <a href="#" className="text-white/70 transition hover:text-white">{l}</a>
-                      )}
+                      <a href="#" className="text-white/70 transition hover:text-white">{l}</a>
                     </li>
                   ))}
                 </ul>
