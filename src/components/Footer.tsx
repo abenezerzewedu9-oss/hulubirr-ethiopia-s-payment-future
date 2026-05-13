@@ -34,11 +34,7 @@ export function Footer() {
                 <ul className="mt-4 space-y-2 text-sm">
                   {c.links.map((l) => (
                     <li key={l}>
-                      {l === "Mobile Wallet" ? (
-                        <Link to="/mobile-wallet" className="text-white/70 transition hover:text-white">{l}</Link>
-                      ) : (
-                        <a href="#" className="text-white/70 transition hover:text-white">{l}</a>
-                      )}
+                      <a href="#" className="text-white/70 transition hover:text-white">{l}</a>
                     </li>
                   ))}
                 </ul>
