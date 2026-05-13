@@ -58,7 +58,7 @@ export function Features() {
           <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
             Supported banks & wallets
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 grayscale opacity-80">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
             {banks.map((b, i) => (
               <img key={i} src={b.src} alt={b.name} className="h-10 w-auto object-contain" />
             ))}
