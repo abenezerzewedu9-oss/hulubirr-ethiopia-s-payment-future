@@ -77,6 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "HuluBirr — Ethiopia's Payment Infrastructure" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "HuluBirr — Ethiopia's Payment Infrastructure" },
+      { property: "og:description", content: "Ethiopia's fastest payment verification gateway. Accept bank transfers and verify in under 20 seconds." },
+      { name: "twitter:description", content: "Ethiopia's fastest payment verification gateway. Accept bank transfers and verify in under 20 seconds." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/410ed13e-6430-4412-a431-e9979b78c03b/id-preview-22e75f12--6bb7e0d7-9a93-4e33-810d-da00fb3f241b.lovable.app-1778666978054.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/410ed13e-6430-4412-a431-e9979b78c03b/id-preview-22e75f12--6bb7e0d7-9a93-4e33-810d-da00fb3f241b.lovable.app-1778666978054.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
